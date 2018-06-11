@@ -14,13 +14,10 @@ import java.util.List;
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductViewHolder> {
 
 
-    //this context we will use to inflate the layout
     private Context context;
 
-    //we are storing all the products in a list
     private List<Contact> contactList;
 
-    //getting the context and product list with constructor
     public ContactAdapter(Context context, List<Contact> contactList) {
         this.context = context;
         this.contactList = contactList;
@@ -28,7 +25,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //inflating and returning our view holder
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_contact_card, null);
         return new ProductViewHolder(view);
@@ -36,10 +33,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        //getting the product of the specified position
+
         Contact contact = contactList.get(position);
 
-        //binding the data with the viewholder views
         holder.contactName.setText(contact.getName());
         holder.contactEmail.setText(contact.getEmail());
         holder.contactPhoneNumber.setText(String.valueOf(contact.getPhoneNumber()));

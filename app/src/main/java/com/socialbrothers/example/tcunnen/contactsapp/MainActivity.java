@@ -1,5 +1,6 @@
 package com.socialbrothers.example.tcunnen.contactsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +52,28 @@ public class MainActivity extends AppCompatActivity {
         ContactAdapter adapter = new ContactAdapter(this, contacts);
 
         recyclerView.setAdapter(adapter);
+    }
+
+    public void onClick(View v) {
+
+        int id = v.getId();
+
+        TextView Text = findViewById(id);
+
+        switch (id){
+            case R.id.contactEmail:
+
+                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {Text.getText().toString()});
+
+                this.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                break;
+            case R.id.contactPhoneNumber:
+                Toast.makeText(this, "phone", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     @Override

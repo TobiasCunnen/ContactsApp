@@ -35,7 +35,9 @@
                 android:layout_below="@id/contactName"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/profilePicture" />
+                android:layout_toEndOf="@id/profilePicture"
+                android:onClick="onClick"
+                android:clickable="true"/>
 
             <TextView
                 android:id="@+id/contactPhoneNumber"
@@ -44,7 +46,9 @@
                 android:layout_below="@id/contactEmail"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/profilePicture" />
+                android:layout_toEndOf="@id/profilePicture"
+                android:onClick="onClick"
+                android:clickable="true"/>
 
         </RelativeLayout>
 

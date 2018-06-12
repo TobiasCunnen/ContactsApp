@@ -54,28 +54,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void onClick(View v) {
-
-        int id = v.getId();
-
-        TextView Text = findViewById(id);
-
-        switch (id){
-            case R.id.contactEmail:
-
-                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-
-                emailIntent.setType("plain/text");
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {Text.getText().toString()});
-
-                this.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                break;
-            case R.id.contactPhoneNumber:
-                Toast.makeText(this, "phone", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

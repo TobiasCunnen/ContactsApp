@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -28,7 +29,19 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_contact_card, null);
-        return new ProductViewHolder(view);
+
+        final ProductViewHolder holder = new ProductViewHolder(view);
+
+        holder.contactName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //code here ...
+                Toast.makeText(context, holder.contactName.getText().toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        return holder;
     }
 
     @Override
@@ -64,5 +77,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
             contactPhoneNumber = itemView.findViewById(R.id.contactPhoneNumber);
             profilePicture = itemView.findViewById(R.id.profilePicture);
         }
+
+
     }
 }

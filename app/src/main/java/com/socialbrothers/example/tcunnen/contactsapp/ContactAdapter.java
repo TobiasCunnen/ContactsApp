@@ -2,6 +2,8 @@ package com.socialbrothers.example.tcunnen.contactsapp;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductViewHolder> {
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
 
     private Context context;
@@ -25,27 +27,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
     }
 
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_contact_card, null);
 
-        final ProductViewHolder holder = new ProductViewHolder(view);
-
-        holder.contactName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //code here ...
-                Toast.makeText(context, holder.contactName.getText().toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-
-        return holder;
+        return new ContactViewHolder(view,context);
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(ContactViewHolder holder, int position) {
 
         Contact contact = contactList.get(position);
 
@@ -64,20 +55,49 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ProductV
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ContactViewHolder extends RecyclerView.ViewHolder {
 
         TextView contactName, contactEmail, contactPhoneNumber;
         ImageView profilePicture;
+        Context context;
 
-        public ProductViewHolder(View itemView) {
+        private ContactViewHolder(View itemView , Context context) {
             super(itemView);
 
-            contactName = itemView.findViewById(R.id.contactName);
-            contactEmail = itemView.findViewById(R.id.contactEmail);
-            contactPhoneNumber = itemView.findViewById(R.id.contactPhoneNumber);
-            profilePicture = itemView.findViewById(R.id.profilePicture);
+            this.context = context;
+
+            this.contactName = itemView.findViewById(R.id.contactName);
+            this.contactEmail = itemView.findViewById(R.id.contactEmail);
+            this.contactPhoneNumber = itemView.findViewById(R.id.contactPhoneNumber);
+            this.profilePicture = itemView.findViewById(R.id.profilePicture);
+
+            initOnTextViewClick();
         }
 
+        private void initOnTextViewClick() {
 
+            contactEmail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                    mailIntent.setType("text/plain");
+                    mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { contactEmail.getText().toString() });
+
+                    context.startActivity(Intent.createChooser(mailIntent, "Send Email"));
+
+
+                }
+            });
+
+            contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" +contactPhoneNumber.getText().toString()));
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 }

@@ -35,8 +35,7 @@ public class AddContactActivity extends AppCompatActivity {
 
 
             case R.id.actionSave:
-                Intent addContactIntent = new Intent(AddContactActivity.this,MainActivity.class);
-                startActivity(addContactIntent);
+                this.finish();
                 return true;
 
             default:

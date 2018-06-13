@@ -4,13 +4,15 @@
     tools:context="com.socialbrothers.example.tcunnen.contactsapp.MainActivity">
 
     <item
+        android:id="@+id/actionSearchContacts"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/actionPersonalPage"
         android:icon="@drawable/ic_person_white_24dp"
-        app:showAsAction="ifRoom"/>
-
-    <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

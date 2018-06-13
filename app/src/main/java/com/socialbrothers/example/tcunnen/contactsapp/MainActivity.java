@@ -1,17 +1,14 @@
 package com.socialbrothers.example.tcunnen.contactsapp;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 
@@ -26,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
     //the recyclerview
     RecyclerView recyclerView;
 
-    private SectionsStatePagerAdapter sectionsStatePagerAdapter;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +30,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-
-        viewPager = findViewById(R.id.containter);
-
-        setupViewPager(viewPager);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewPager.setCurrentItem(2);
+                Intent addContactIntent = new Intent(MainActivity.this,AddContactActivity.class);
+                startActivity(addContactIntent);
             }
         });
 
@@ -64,21 +53,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
-    private void setupViewPager(ViewPager viewPager){
-        SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AddContactFragment(), "AddContactFragment");
-        viewPager.setAdapter(adapter);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+
+            case R.id.actionPersonalPage:
+                Intent addContactIntent = new Intent(MainActivity.this,AddContactActivity.class);
+                startActivity(addContactIntent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void exampleContacts(){

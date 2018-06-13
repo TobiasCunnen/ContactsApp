@@ -2,9 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.socialbrothers.example.tcunnen.contactsapp.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/actionPersonalPage"
+        android:icon="@drawable/ic_person_white_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
+
 </menu>

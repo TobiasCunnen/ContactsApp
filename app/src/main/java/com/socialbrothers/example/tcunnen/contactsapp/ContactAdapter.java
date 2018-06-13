@@ -91,9 +91,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" +contactPhoneNumber.getText().toString()));
-                    context.startActivity(intent);
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" +contactPhoneNumber.getText().toString()));
+                    context.startActivity(callIntent);
                 }
             });
         }

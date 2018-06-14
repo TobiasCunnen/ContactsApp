@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">ContactsApp</string>
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account">Account</string>
+    <string name="search">Search</string>
+    <string name="profilePicture">Profile picture</string>
+    <string name="mail">mail</string>
+    <string name="saveUser">Save user</string>
+    <string name="phoneNumber">Phone number</string>
 </resources>

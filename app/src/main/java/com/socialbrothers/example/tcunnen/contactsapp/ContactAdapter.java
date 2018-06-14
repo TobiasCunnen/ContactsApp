@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
@@ -48,12 +49,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     }
 
-
     @Override
     public int getItemCount() {
         return contactList.size();
     }
 
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = new ArrayList<>();
+        this.contactList.addAll(contactList);
+        notifyDataSetChanged();
+    }
 
     class ContactViewHolder extends RecyclerView.ViewHolder {
 

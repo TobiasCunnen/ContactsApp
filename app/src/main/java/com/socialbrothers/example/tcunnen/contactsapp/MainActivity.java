@@ -9,19 +9,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
 import android.view.MenuItem;
+import android.view.View;
+import android.support.v7.widget.SearchView;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     //a list to store all the products
     List<Contact> contacts;
 
     //the recyclerview
     RecyclerView recyclerView;
+
+    ContactAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +51,20 @@ public class MainActivity extends AppCompatActivity {
 
         exampleContacts();
 
-        ContactAdapter adapter = new ContactAdapter(this, contacts);
+        adapter = new ContactAdapter(this, contacts);
 
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem search = menu.findItem(R.id.actionSearchContacts);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -64,18 +73,38 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-
             case R.id.actionPersonalPage:
                 Intent addContactIntent = new Intent(MainActivity.this,AddContactActivity.class);
                 startActivity(addContactIntent);
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String input) {
+
+        String userInput = input.toLowerCase();
+
+        List<Contact> filterConatctList = new ArrayList<>();
+
+        for (Contact contact : contacts){
+                if (contact.getName().toLowerCase().contains(userInput) || contact.getEmail().toLowerCase().contains(userInput)){
+                    filterConatctList.add(contact);
+                }
+        }
+
+        adapter.setContactList(filterConatctList);
+
+        return true;
     }
 
     private void exampleContacts(){

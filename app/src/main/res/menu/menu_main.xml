@@ -5,12 +5,15 @@
 
     <item
         android:id="@+id/actionSearchContacts"
+        android:title="@string/search"
         android:icon="@drawable/ic_search_white_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         />
 
     <item
         android:id="@+id/actionPersonalPage"
+        android:title="@string/account"
         android:icon="@drawable/ic_person_white_24dp"
         app:showAsAction="ifRoom"
         />

@@ -4,7 +4,9 @@
     <string name="account">Account</string>
     <string name="search">Search</string>
     <string name="profilePicture">Profile picture</string>
-    <string name="mail">mail</string>
+    <string name="name">Name</string>
+    <string name="mail">Mail</string>
+    <string name="phone">Phone</string>
     <string name="saveUser">Save user</string>
-    <string name="phoneNumber">Phone number</string>
+    <string name="add_contact_title">Add contact</string>
 </resources>

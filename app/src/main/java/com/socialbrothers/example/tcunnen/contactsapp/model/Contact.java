@@ -1,4 +1,4 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.model;
 
 public class Contact {
 

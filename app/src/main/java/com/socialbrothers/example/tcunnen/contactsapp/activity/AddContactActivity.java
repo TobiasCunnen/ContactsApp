@@ -1,10 +1,12 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.activity;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.socialbrothers.example.tcunnen.contactsapp.R;
 
 public class AddContactActivity extends AppCompatActivity {
 

@@ -1,10 +1,8 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.socialbrothers.example.tcunnen.contactsapp.R;
+import com.socialbrothers.example.tcunnen.contactsapp.adapter.ContactAdapter;
+import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,24 +55,15 @@ public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTex
         exampleContacts();
     }
 
-
-
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
 
-        switch (item.getItemId()) {
-
-            case R.id.actionPersonalPage:
-                Intent addContactIntent = new Intent(getContext(),AddContactActivity.class);
-                startActivity(addContactIntent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
+        MenuItem search = menu.findItem(R.id.actionSearchContacts);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setOnQueryTextListener(this);
     }
+
 
     @Override
     public boolean onQueryTextSubmit(String s) {
@@ -82,15 +75,15 @@ public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTex
 
         String userInput = input.toLowerCase();
 
-        List<Contact> filterConatctList = new ArrayList<>();
+        List<Contact> filterContactList = new ArrayList<>();
 
         for (Contact contact : contacts){
             if (contact.getName().toLowerCase().contains(userInput) || contact.getEmail().toLowerCase().contains(userInput)){
-                filterConatctList.add(contact);
+                filterContactList.add(contact);
             }
         }
 
-        contactAdapter.setContactList(filterConatctList);
+        contactAdapter.setContactList(filterContactList);
 
         return true;
     }

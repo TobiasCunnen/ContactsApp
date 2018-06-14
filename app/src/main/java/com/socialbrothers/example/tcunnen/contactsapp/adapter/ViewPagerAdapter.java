@@ -1,4 +1,4 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

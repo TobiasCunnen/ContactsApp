@@ -1,4 +1,4 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.adapter;
 
 
 import android.content.Context;
@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
+import com.socialbrothers.example.tcunnen.contactsapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

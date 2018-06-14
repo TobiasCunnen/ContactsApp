@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.socialbrothers.example.tcunnen.contactsapp.MainActivity">
+    tools:context="com.socialbrothers.example.tcunnen.contactsapp.activity.MainActivity">
 
     <item
         android:id="@+id/actionSearchContacts"
@@ -9,13 +9,6 @@
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        />
-
-    <item
-        android:id="@+id/actionPersonalPage"
-        android:title="@string/account"
-        android:icon="@drawable/ic_person_white_24dp"
-        app:showAsAction="ifRoom"
         />
 
 </menu>

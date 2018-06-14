@@ -15,26 +15,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.socialbrothers.example.tcunnen.contactsapp.R;
+import com.socialbrothers.example.tcunnen.contactsapp.activity.MainActivity;
 import com.socialbrothers.example.tcunnen.contactsapp.adapter.ContactAdapter;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class RecyclerFragment extends Fragment implements SearchView.OnQueryTextListener  {
 
-    private View view;
     private List<Contact> contacts;
     private ContactAdapter contactAdapter;
 
-    public RecyclerFragment() {
-
+    public RecyclerFragment(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.recycler_fragment, container, false);
+        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -50,9 +50,7 @@ public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTex
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        contacts = new ArrayList<>();
-        exampleContacts();
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -63,7 +61,6 @@ public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTex
         SearchView searchView = (SearchView) search.getActionView();
         searchView.setOnQueryTextListener(this);
     }
-
 
     @Override
     public boolean onQueryTextSubmit(String s) {
@@ -86,28 +83,5 @@ public class RecyclerFragment extends Fragment  implements SearchView.OnQueryTex
         contactAdapter.setContactList(filterContactList);
 
         return true;
-    }
-
-    @Override
-    public boolean onMenuItemActionExpand(MenuItem menuItem) {
-        return false;
-    }
-
-    @Override
-    public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-        return false;
-    }
-
-    private void exampleContacts(){
-        contacts.add(new Contact("Kermit the Frog","Kermit@gmail.com",19551990,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Miss Piggy","MissPiggy@gmail.com",19762002,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Fozzie Bear","FozzieBear@gmail.com",19551990,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Gonzo","Gonzo@gmail.com",19551990,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Rowlf the Dog","RowlftheDog@gmail.com",19621990,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Scooter","Scooter@gmail.com",19761991,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Pepe the King Prawn","PepetheKingPrawn@gmail.com",19761991,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Rizzo the Rat","RizzotheRat@gmail.com",19802016,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Animal","Animal@gmail.com",19752000,R.drawable.ic_person_blue_24dp));
-        contacts.add(new Contact("Walter","Walter@gmail.com",19761991,R.drawable.ic_person_blue_24dp));
     }
 }

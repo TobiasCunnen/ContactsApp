@@ -3,6 +3,8 @@ package com.socialbrothers.example.tcunnen.contactsapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.socialbrothers.example.tcunnen.contactsapp.R;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
@@ -19,9 +22,7 @@ import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-
     private Context context;
-
     private List<Contact> contactList;
 
     public ContactAdapter(Context context, List<Contact> contactList) {
@@ -46,8 +47,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.contactEmail.setText(contact.getEmail());
         holder.contactPhoneNumber.setText(String.valueOf(contact.getPhoneNumber()));
 
-        holder.profilePicture.setImageDrawable(context.getResources().getDrawable(contact.getProfilePicture()));
-
+        if(contact.getBitmapProfilePicture()!=null){
+            holder.profilePicture.setImageBitmap(contact.getBitmapProfilePicture());
+        }else {
+            Glide.with(context)
+                    .load(R.drawable.ic_person_blue_24dp)
+                    .into(holder.profilePicture);
+        }
     }
 
     @Override

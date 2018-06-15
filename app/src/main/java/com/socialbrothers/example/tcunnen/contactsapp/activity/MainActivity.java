@@ -2,6 +2,8 @@ package com.socialbrothers.example.tcunnen.contactsapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.contacts = new ContactsViewModel();
-        this.me = new Contact("Tobias Cunnen","t.cunnen@gmail.com","0640698529",R.drawable.ic_person_blue_24dp);
+        this.contacts = new ContactsViewModel(this);
+        this.me = new Contact("Tobias Cunnen", "t.cunnen@gmail.com", "0640698529", null);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_id);
 
@@ -60,14 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerFragment recyclerFragment = new RecyclerFragment();
         Bundle recyclerBundle = new Bundle();
-        recyclerBundle.putParcelableArrayList("contacts",contacts.getContactList());
+        recyclerBundle.putParcelableArrayList("contacts", contacts.getContactList());
         recyclerFragment.setArguments(recyclerBundle);
 
         viewPagerAdapter.AddFragment(recyclerFragment, "Contacts");
 
         AccountFragment accountFragment = new AccountFragment();
         Bundle accountBundle = new Bundle();
-        accountBundle.putParcelable("account",me);
+        accountBundle.putParcelable("account", me);
         accountFragment.setArguments(accountBundle);
 
         viewPagerAdapter.AddFragment(accountFragment, "Account");
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-                startActivityForResult(intent,GET_CONTACT_REQUEST);
+                startActivityForResult(intent, GET_CONTACT_REQUEST);
             }
         });
     }
@@ -89,12 +91,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (GET_CONTACT_REQUEST == requestCode && resultCode == Activity.RESULT_OK) {
-            if(data != null) {
+            if (data != null) {
                 String name = data.getStringExtra("name");
                 String phone = data.getStringExtra("phone");
                 String mail = data.getStringExtra("mail");
-                contacts.addContact(new Contact(name, mail, phone, R.drawable.ic_person_blue_24dp));
+
+                contacts.addContact(new Contact(name, mail, phone, null));
             }
         }
     }
 }
+

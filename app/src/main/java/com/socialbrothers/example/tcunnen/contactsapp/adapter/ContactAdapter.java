@@ -1,8 +1,10 @@
-package com.socialbrothers.example.tcunnen.contactsapp;
+package com.socialbrothers.example.tcunnen.contactsapp.adapter;
 
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,15 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.socialbrothers.example.tcunnen.contactsapp.R;
+import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-
     private Context context;
-
     private List<Contact> contactList;
 
     public ContactAdapter(Context context, List<Contact> contactList) {
@@ -29,8 +33,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.layout_contact_card, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_contact_card,parent,false);
 
         return new ContactViewHolder(view,context);
     }
@@ -44,16 +47,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.contactEmail.setText(contact.getEmail());
         holder.contactPhoneNumber.setText(String.valueOf(contact.getPhoneNumber()));
 
-        holder.profilePicture.setImageDrawable(context.getResources().getDrawable(contact.getProfilePicture()));
-
+        if(contact.getBitmapProfilePicture()!=null){
+            holder.profilePicture.setImageBitmap(contact.getBitmapProfilePicture());
+        }else {
+            Glide.with(context)
+                    .load(R.drawable.ic_person_blue_24dp)
+                    .into(holder.profilePicture);
+        }
     }
-
 
     @Override
     public int getItemCount() {
         return contactList.size();
     }
 
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = new ArrayList<>();
+        this.contactList.addAll(contactList);
+        notifyDataSetChanged();
+    }
 
     class ContactViewHolder extends RecyclerView.ViewHolder {
 
@@ -84,16 +96,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                     mailIntent.setType("text/plain");
                     mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { contactEmail.getText().toString() });
 
-                    context.startActivity(Intent.createChooser(mailIntent, "Verstuur mail naar "+contactEmail.getText().toString()));
+                    context.startActivity(Intent.createChooser(mailIntent, contactEmail.getText().toString()));
                 }
             });
 
             contactPhoneNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" +contactPhoneNumber.getText().toString()));
-                    context.startActivity(intent);
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" +contactPhoneNumber.getText().toString()));
+                    context.startActivity(callIntent);
                 }
             });
         }

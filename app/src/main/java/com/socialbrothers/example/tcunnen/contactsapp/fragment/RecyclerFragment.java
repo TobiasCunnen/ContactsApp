@@ -27,9 +27,9 @@ public class RecyclerFragment extends Fragment implements SearchView.OnQueryText
     private List<Contact> contacts;
     private ContactAdapter contactAdapter;
 
-    public RecyclerFragment(List<Contact> contacts) {
-        this.contacts = contacts;
+    public RecyclerFragment() {
     }
+
 
     @Nullable
     @Override
@@ -39,6 +39,11 @@ public class RecyclerFragment extends Fragment implements SearchView.OnQueryText
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        Bundle bundle = this.getArguments();
+
+        assert bundle != null;
+        contacts = bundle.getParcelableArrayList("contacts");
 
         contactAdapter = new ContactAdapter(getContext(), contacts);
         recyclerView.setAdapter(contactAdapter);

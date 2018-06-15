@@ -33,23 +33,14 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_person_grey_24dp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="10dp"
-                android:padding="10dp">
-
-                <EditText
+                <TextView
                     android:id="@+id/contactName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="15dp"
                     android:hint="@string/name"
-                    android:inputType="textPersonName"
                     android:padding="5dp"/>
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -66,14 +57,7 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_phone_grey_24dp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp">
-
-                <EditText
+                <TextView
                     android:id="@+id/contactPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,9 +65,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:hint="@string/phone"
-                    android:inputType="phone"
                     android:padding="5dp" />
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -99,14 +81,7 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_mail_grey_24dp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp">
-
-                <EditText
+                <TextView
                     android:id="@+id/contactEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,9 +89,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:hint="@string/mail"
-                    android:inputType="textEmailAddress"
                     android:padding="5dp" />
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

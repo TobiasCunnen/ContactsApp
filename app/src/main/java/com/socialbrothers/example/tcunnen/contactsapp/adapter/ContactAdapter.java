@@ -90,7 +90,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                     mailIntent.setType("text/plain");
                     mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { contactEmail.getText().toString() });
 
-                    context.startActivity(Intent.createChooser(mailIntent, "Verstuur mail naar "+contactEmail.getText().toString()));
+                    context.startActivity(Intent.createChooser(mailIntent, contactEmail.getText().toString()));
                 }
             });
 

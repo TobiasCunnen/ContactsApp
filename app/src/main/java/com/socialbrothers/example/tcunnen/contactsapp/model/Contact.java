@@ -1,13 +1,16 @@
 package com.socialbrothers.example.tcunnen.contactsapp.model;
 
-public class Contact {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Contact implements Parcelable {
 
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private int profilePicture;
 
-    public Contact(String name, String email, int phoneNumber, int profilePhoto) {
+    public Contact(String name, String email, String phoneNumber, int profilePhoto) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -26,16 +29,8 @@ public class Contact {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public int getProfilePicture() {
@@ -44,5 +39,15 @@ public class Contact {
 
     public void setProfilePicture(int profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

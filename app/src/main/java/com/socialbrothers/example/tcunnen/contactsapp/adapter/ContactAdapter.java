@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 import com.socialbrothers.example.tcunnen.contactsapp.R;
+import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;

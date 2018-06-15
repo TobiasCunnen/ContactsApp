@@ -11,14 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.socialbrothers.example.tcunnen.contactsapp.fragment.AccountFragment;
 import com.socialbrothers.example.tcunnen.contactsapp.R;
-import com.socialbrothers.example.tcunnen.contactsapp.fragment.RecyclerFragment;
 import com.socialbrothers.example.tcunnen.contactsapp.adapter.ViewPagerAdapter;
+import com.socialbrothers.example.tcunnen.contactsapp.fragment.AccountFragment;
+import com.socialbrothers.example.tcunnen.contactsapp.fragment.RecyclerFragment;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 import com.socialbrothers.example.tcunnen.contactsapp.viewmodel.ContactsViewModel;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

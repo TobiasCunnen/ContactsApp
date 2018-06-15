@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.socialbrothers.example.tcunnen.contactsapp.R;
-import com.socialbrothers.example.tcunnen.contactsapp.activity.MainActivity;
 import com.socialbrothers.example.tcunnen.contactsapp.adapter.ContactAdapter;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 

@@ -4,7 +4,6 @@ import com.socialbrothers.example.tcunnen.contactsapp.R;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContactsViewModel {
 

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.contacts = new ContactsViewModel(this);
+        this.contacts = new ContactsViewModel();
         this.me = new Contact("Tobias Cunnen", "t.cunnen@gmail.com", "0640698529", null);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_id);

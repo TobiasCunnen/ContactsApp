@@ -1,6 +1,5 @@
 package com.socialbrothers.example.tcunnen.contactsapp.viewmodel;
 
-import android.content.Context;
 import com.socialbrothers.example.tcunnen.contactsapp.model.Contact;
 
 import java.util.ArrayList;
@@ -10,17 +9,17 @@ public class ContactsViewModel {
 
     private ArrayList<Contact> contactList;
 
-    public ContactsViewModel(Context context){
+    public ContactsViewModel(){
 
         contactList = new ArrayList<>();
-        GenerateExampleData(context);
+        GenerateExampleData();
     }
 
     public ArrayList<Contact> getContactList() {
         return contactList;
     }
 
-    private void GenerateExampleData(Context context){
+    private void GenerateExampleData(){
 
         contactList.add(new Contact("Kermit the Frog","Kermit@gmail.com","19551990",null));
         contactList.add(new Contact("Miss Piggy","MissPiggy@gmail.com", "19762002",null));
